@@ -3,11 +3,11 @@ import numpy as np
 import pandas as pd
 import os
 
-# Get correct absolute path for Streamlit Cloud
+# Correct model path for Streamlit Cloud
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "artifacts", "model_data.joblib")
 
-# Load model safely
+# Load model components
 model_data = joblib.load(MODEL_PATH)
 model = model_data['model']
 scaler = model_data['scaler']
@@ -19,6 +19,7 @@ def prepare_input(age, income, loan_amount, loan_tenure_months, avg_dpd_per_deli
                   delinquency_ratio, credit_utilization_ratio, num_open_accounts,
                   residence_type, loan_purpose, loan_type):
 
+    # Base input dictionary
     input_data = {
         'age': age,
         'loan_tenure_months': loan_tenure_months,
@@ -37,13 +38,17 @@ def prepare_input(age, income, loan_amount, loan_tenure_months, avg_dpd_per_deli
 
     df = pd.DataFrame([input_data])
 
-    # Add missing columns with 0
+    # 🧠 Ensure ALL training features exist
     for col in features:
         if col not in df.columns:
             df[col] = 0
 
-    df[cols_to_scale] = scaler.transform(df[cols_to_scale])
+    # Reorder columns exactly like training
     df = df[features]
+
+    # Scale only columns that were scaled during training
+    scale_cols_available = [c for c in cols_to_scale if c in df.columns]
+    df[scale_cols_available] = scaler.transform(df[scale_cols_available])
 
     return df
 
@@ -64,7 +69,7 @@ def calculate_credit_score(input_df, base_score=300, scale_length=600):
     else:
         rating = "Excellent"
 
-    return default_probability.flatten()[0], int(score), rating
+    return float(default_probability.flatten()[0]), int(score), rating
 
 
 def predict(*args):
