@@ -19,7 +19,6 @@ def prepare_input(age, income, loan_amount, loan_tenure_months, avg_dpd_per_deli
                   delinquency_ratio, credit_utilization_ratio, num_open_accounts,
                   residence_type, loan_purpose, loan_type):
 
-    # Base input dictionary
     input_data = {
         'age': age,
         'loan_tenure_months': loan_tenure_months,
@@ -38,19 +37,29 @@ def prepare_input(age, income, loan_amount, loan_tenure_months, avg_dpd_per_deli
 
     df = pd.DataFrame([input_data])
 
-    # 🧠 Ensure ALL training features exist
-    for col in features:
+    # 🔥 STEP 1 — match EXACT scaler columns
+    all_scaler_cols = scaler.feature_names_in_
+
+    for col in all_scaler_cols:
         if col not in df.columns:
             df[col] = 0
 
-    # Reorder columns exactly like training
-    df = df[features]
+    # Keep only scaler columns for transform
+    df_scaled_part = df[all_scaler_cols]
+    df_scaled_part = pd.DataFrame(
+        scaler.transform(df_scaled_part),
+        columns=all_scaler_cols
+    )
 
-    # Scale only columns that were scaled during training
-    scale_cols_available = [c for c in cols_to_scale if c in df.columns]
-    df[scale_cols_available] = scaler.transform(df[scale_cols_available])
+    # 🔥 STEP 2 — Now match model feature columns
+    for col in features:
+        if col not in df_scaled_part.columns:
+            df_scaled_part[col] = 0
 
-    return df
+    df_final = df_scaled_part[features]
+
+    return df_final
+
 
 
 def calculate_credit_score(input_df, base_score=300, scale_length=600):
