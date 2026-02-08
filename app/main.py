@@ -1,7 +1,6 @@
 import streamlit as st
-from prediction_helper import predict  # Ensure this is correctly linked to your prediction_helper.py
+from app.prediction_helper import predict  # FIXED IMPORT
 
-# Set the page configuration and title
 st.set_page_config(page_title="Lauki Finance: Credit Risk Modelling", page_icon="📊")
 st.title("Lauki Finance: Credit Risk Modelling")
 
