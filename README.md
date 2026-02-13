@@ -8,6 +8,13 @@ This application is designed for **Loan Processing Officers** to evaluate an app
 
 ---
 
+## 🌐 Live Demo
+
+You can access the deployed application here:
+
+👉 https://mohamed-aslam-ml-project-credit-risk-model.streamlit.app/
+
+
 ## 📌 Project Overview
 
 The Credit Risk Modelling App predicts the probability of loan default using applicant financial and credit behavior data.
@@ -180,13 +187,6 @@ streamlit run main.py
 
 ---
 
-## 🌐 Live Demo
-
-You can access the deployed application here:
-
-👉 https://mohamed-aslam-ml-project-credit-risk-model.streamlit.app/
-
----
 
 ## 💡 Key Highlights
 
