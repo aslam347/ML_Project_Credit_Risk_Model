@@ -1,19 +1,17 @@
-
 # 🏦 Credit Risk Modelling App  
 ### AI-Powered Loan Risk Evaluation System  
 
-An end-to-end Streamlit-based Machine Learning application that automates the process of **credit risk assessment** for financial institutions.
+An end-to-end Streamlit-based Machine Learning application that automates **credit risk assessment** for financial institutions.
 
-This application is designed for **Loan Processing Officers** to evaluate an applicant’s creditworthiness using data-driven risk scoring.
+This application is designed for **loan processing officers** to evaluate an applicant’s creditworthiness using data-driven risk scoring.
 
 ---
 
 ## 🌐 Live Demo
 
-You can access the deployed application here:
-
 👉 https://mohamed-aslam-ml-project-credit-risk-model.streamlit.app/
 
+---
 
 ## 📌 Project Overview
 
@@ -30,8 +28,8 @@ It takes inputs such as:
 
 And returns:
 
-- ✅ Risk prediction (Defaulter / Non-Defaulter)  
-- 📊 Credit Score (300–900 scale)  
+- ✅ Risk prediction: Defaulter / Non-Defaulter  
+- 📊 Credit Score: 300–900 scale  
 - 🏷 Risk Tier Classification  
 - 📈 Model-based explainability insights  
 
@@ -47,7 +45,7 @@ And returns:
   - **Average:** 500–649  
   - **Good:** 650–749  
   - **Excellent:** 750–900  
-- Displays key financial insights (e.g., credit utilization ratio)  
+- Displays key financial insights like credit utilization ratio  
 - AI explainability via Logistic Regression coefficients  
 - Model performance tracking using:
   - AUC  
@@ -95,7 +93,8 @@ The model considers the following applicant attributes:
 - ROC-AUC  
 - Gini Coefficient  
 - KS Statistic  
-- Recall (Focused on minimizing false negatives)
+- Recall  
+- Accuracy  
 
 ---
 
@@ -110,8 +109,6 @@ If:
 ➡ Model predicts:
 - Defaulter  
 - Poor Credit Score  
-
----
 
 ### ✅ Low Risk Applicant
 If:
@@ -135,31 +132,37 @@ If:
 - Pandas  
 - NumPy  
 - Scikit-learn  
+- Joblib  
 - XGBoost  
-- FastAPI (Alternative API-based architecture)  
 
 ### Deployment
 - Streamlit Cloud  
+- Docker  
+- AWS EC2 (ready for deployment)  
 
 ---
 
 ## 📁 Project Structure
 
-```
-ml-project-credit-risk-modelling/
+```text
+ML_Project_Credit_Risk_Model/
 │
-├── artifacts/                  
-│   ├── model_data.joblib       
+├── app/
+│   ├── artifacts/
+│   │   └── model_data.joblib
+│   ├── main.py
+│   └── prediction_helper.py
 │
-├── backend/                    
-│   ├── logging_setup.py        
-│   ├── prediction.py           
-│   ├── server_cr.py            
+├── dataset/
+│   ├── bureau_data.csv
+│   ├── customers.csv
+│   └── loans.csv
 │
-├── main.py                     
-├── requirements.txt            
-├── LICENSE                     
-└── README.md                   
+├── credit_risk_model_.ipynb
+├── requirements.txt
+├── Dockerfile
+├── .dockerignore
+└── README.md
 ```
 
 ---
@@ -169,8 +172,8 @@ ml-project-credit-risk-modelling/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/ml-project-credit-risk-modelling.git
-cd ml-project-credit-risk-modelling
+git clone https://github.com/aslam347/ML_Project_Credit_Risk_Model.git
+cd ML_Project_Credit_Risk_Model
 ```
 
 ### 2️⃣ Install Dependencies
@@ -182,11 +185,43 @@ pip install -r requirements.txt
 ### 3️⃣ Run the Application
 
 ```bash
-streamlit run main.py
+streamlit run app/main.py
 ```
 
 ---
 
+## 🐳 Run with Docker
+
+### 1️⃣ Build Docker Image
+
+```bash
+docker build -t credit-risk-model .
+```
+
+### 2️⃣ Run Docker Container
+
+```bash
+docker run -p 8501:8501 credit-risk-model
+```
+
+### 3️⃣ Open in Browser
+
+```text
+http://localhost:8501
+```
+
+---
+
+## 🐳 Docker Hub
+
+If the image is pushed to Docker Hub, pull and run it using:
+
+```bash
+docker pull mohamedaslam2001/credit-risk-model
+docker run -p 8501:8501 mohamedaslam2001/credit-risk-model
+```
+
+---
 
 ## 💡 Key Highlights
 
@@ -219,4 +254,3 @@ Python • Machine Learning • Responsible AI
 ## ⭐ Support
 
 If you found this project useful, consider giving it a ⭐ on GitHub!
-
