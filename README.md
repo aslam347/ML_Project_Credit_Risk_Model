@@ -1,189 +1,160 @@
-# 🏦 Credit Risk Modelling App  
-### AI-Powered Loan Risk Evaluation System  
+# 🏦 Credit Risk Modelling System  
+### AI-Powered Loan Risk Assessment Platform
 
-An end-to-end Streamlit-based Machine Learning application that automates **credit risk assessment** for financial institutions.
+An end-to-end Machine Learning application that predicts loan default probability and evaluates applicant creditworthiness using financial and behavioral data.
 
-This application is designed for **loan processing officers** to evaluate an applicant’s creditworthiness using data-driven risk scoring.
+Built with:
+- Machine Learning
+- Streamlit
+- Docker
+- AWS EC2
+- Amazon ECR
+- GitHub Actions CI/CD
 
 ---
 
-## 🌐 Live Demo
+# 🌐 Live Demo
 
+## 🚀 Streamlit Cloud
 👉 https://mohamed-aslam-ml-project-credit-risk-model.streamlit.app/
 
 ---
 
-## 📌 Project Overview
+# 📌 Project Overview
 
-The Credit Risk Modelling App predicts the probability of loan default using applicant financial and credit behavior data.
+This project simulates a real-world credit risk evaluation system used in financial institutions for loan underwriting and applicant risk analysis.
 
-It takes inputs such as:
+The application predicts:
+- ✅ Default Probability
+- 📊 Credit Score (300–900)
+- 🏷 Risk Tier Classification
 
-- Applicant income  
-- Loan amount
-- past loan 
-- Loan type  
-- Credit history (DPD, delinquency ratio)  
-- Open loan accounts  
-- Credit utilization ratio  
-
-And returns:
-
-- ✅ Risk prediction: Defaulter / Non-Defaulter  
-- 📊 Credit Score: 300–900 scale  
-- 🏷 Risk Tier Classification  
-- 📈 Model-based explainability insights  
+The system uses applicant financial and credit behavior data such as:
+- Income
+- Loan Amount
+- Credit Utilization
+- Delinquency Ratio
+- Loan Type
+- Open Loan Accounts
 
 ---
 
-## 🚀 Features
+# 🚀 Key Features
 
-- Simple and clean Streamlit UI  
-- Predicts risk associated with the loan  
-- Provides applicant’s credit score  
-- Categorizes applicants into risk tiers:
-  - **Poor:** 300–499  
-  - **Average:** 500–649  
-  - **Good:** 650–749  
-  - **Excellent:** 750–900  
-- Displays key financial insights like credit utilization ratio  
-- AI explainability via Logistic Regression coefficients  
-- Model performance tracking using:
-  - AUC  
-  - Gini  
-  - KS Statistic  
-  - Recall  
+- Credit Risk Prediction
+- Credit Score Generation
+- Risk Tier Classification
+- Streamlit Interactive UI
+- Explainable ML Model
+- Dockerized Deployment
+- AWS EC2 Deployment
+- Amazon ECR Integration
+- GitHub Actions CI/CD Pipeline
+- Automated Testing using Pytest
 
 ---
 
-## 📥 Input Features
+# 🧠 Machine Learning Models
 
-The model considers the following applicant attributes:
+## Primary Model
+- Logistic Regression
 
-### 👤 Personal & Financial Information
-- Applicant Age  
-- Income  
-- Loan Amount  
-- Loan Tenure (months)  
-
-### 📊 Credit Behaviour Metrics
-- Average DPD (Days Past Due)  
-- Delinquency Ratio  
-- Credit Utilization Ratio  
-- Open Loan Accounts  
-
-### 🏠 Loan & Profile Attributes
-- Residence Type  
-- Loan Purpose  
-- Loan Type  
+## Comparative Model
+- XGBoost Classifier
 
 ---
 
-## 🧠 Model Details
+# 📊 Evaluation Metrics
 
-### Algorithms Used
-- Logistic Regression (Primary Model)
-- XGBoost Classifier (Comparative Model)
-
-### Why Logistic Regression?
-- Highly interpretable  
-- Business-friendly explainability  
-- Stable in financial risk modelling  
-
-### Evaluation Metrics
-- ROC-AUC  
-- Gini Coefficient  
-- KS Statistic  
-- Recall  
-- Accuracy  
+- ROC-AUC
+- Gini Coefficient
+- KS Statistic
+- Recall
+- Accuracy
 
 ---
 
-## 📊 Example Prediction Logic
+# 🛠 Tech Stack
 
-### ⚠ High Risk Applicant
-If:
-- High Loan-to-Income Ratio  
-- High Delinquency Ratio  
-- High Credit Utilization  
+## Frontend
+- Streamlit
 
-➡ Model predicts:
-- Defaulter  
-- Poor Credit Score  
+## Backend
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- XGBoost
 
-### ✅ Low Risk Applicant
-If:
-- Low Loan-to-Income Ratio  
-- Stable Income  
-- Low Delinquency  
+## Cloud & DevOps
+- Docker
+- AWS EC2
+- Amazon ECR
+- GitHub Actions
+- CI/CD Pipeline
 
-➡ Model predicts:
-- Non-Defaulter  
-- Excellent Credit Score  
-
----
-
-## 🛠 Tech Stack
-
-### Frontend
-- Streamlit  
-
-### Backend
-- Python  
-- Pandas  
-- NumPy  
-- Scikit-learn  
-- Joblib  
-- XGBoost  
-
-### Deployment
-- Streamlit Cloud  
-- Docker  
-- AWS EC2 (ready for deployment)  
+## Testing
+- Pytest
 
 ---
 
-## 📁 Project Structure
+# ☁ CI/CD Workflow
+
+```text
+Developer Push
+      ↓
+GitHub Actions
+      ↓
+Run Pytest
+      ↓
+Build Docker Image
+      ↓
+Push to Amazon ECR
+      ↓
+Deploy to AWS EC2
+```
+
+---
+
+# 📁 Project Structure
 
 ```text
 ML_Project_Credit_Risk_Model/
 │
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
 ├── app/
 │   ├── artifacts/
-│   │   └── model_data.joblib
 │   ├── main.py
 │   └── prediction_helper.py
 │
 ├── dataset/
-│   ├── bureau_data.csv
-│   ├── customers.csv
-│   └── loans.csv
-│
-├── credit_risk_model_.ipynb
-├── requirements.txt
+├── tests/
 ├── Dockerfile
-├── .dockerignore
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## ▶ How to Run Locally
+# ▶ Run Locally
 
-### 1️⃣ Clone the Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/aslam347/ML_Project_Credit_Risk_Model.git
 cd ML_Project_Credit_Risk_Model
 ```
 
-### 2️⃣ Install Dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Run the Application
+## Run Application
 
 ```bash
 streamlit run app/main.py
@@ -191,67 +162,87 @@ streamlit run app/main.py
 
 ---
 
-## 🐳 Run with Docker
+# 🧪 Run Tests
 
-### 1️⃣ Build Docker Image
+```bash
+pytest
+```
+
+---
+
+# 🐳 Docker Deployment
+
+## Build Docker Image
 
 ```bash
 docker build -t credit-risk-model .
 ```
 
-### 2️⃣ Run Docker Container
+## Run Docker Container
 
 ```bash
 docker run -p 8501:8501 credit-risk-model
 ```
 
-### 3️⃣ Open in Browser
+---
 
-```text
-http://localhost:8501
-```
+# ☁ AWS Deployment
+
+This project is deployed using:
+- AWS EC2
+- Amazon ECR
+- Docker
+- GitHub Actions CI/CD
 
 ---
 
-## 🐳 Docker Hub
+# 📈 Business Use Cases
 
-If the image is pushed to Docker Hub, pull and run it using:
-
-```bash
-docker pull mohamedaslam2001/credit-risk-model
-docker run -p 8501:8501 mohamedaslam2001/credit-risk-model
-```
-
----
-
-## 💡 Key Highlights
-
-- End-to-end ML pipeline integration  
-- Business-friendly risk scoring  
-- Production-style deployment  
-- Model explainability for future enhancements  
-- Designed for real-world loan underwriting use  
+- Loan Default Prediction
+- Credit Scoring
+- Risk Analytics
+- Automated Underwriting
+- Financial Risk Assessment
 
 ---
 
-## 🔮 Future Enhancements
+# 🔮 Future Enhancements
 
-- SHAP-based explainability  
-- Model monitoring dashboard  
-- Bias & fairness detection  
-- CI/CD pipeline integration  
-- Cloud deployment with Docker + AWS  
-
----
-
-## 👨‍💻 Author
-
-**Mohamed Aslam M**  
-AI Engineer | Data Science Enthusiast  
-Python • Machine Learning • Responsible AI  
+- SHAP Explainability
+- Kubernetes Deployment
+- Monitoring Dashboard
+- MLflow Integration
+- Bias Detection
 
 ---
 
-## ⭐ Support
+# 👨‍💻 Author
+
+## Mohamed Aslam M
+
+AI/ML Engineer | Backend Developer | MLOps Enthusiast
+
+### Skills
+- Python
+- Machine Learning
+- AWS
+- Docker
+- CI/CD
+- GitHub Actions
+
+---
+
+# ⭐ Project Highlights
+
+✅ End-to-End ML Pipeline  
+✅ Production-Style Deployment  
+✅ Dockerized Application  
+✅ Cloud Deployment using AWS  
+✅ Automated CI/CD Workflow  
+✅ Real-World Financial AI Use Case  
+
+---
+
+# ⭐ Support
 
 If you found this project useful, consider giving it a ⭐ on GitHub!
