@@ -20,7 +20,8 @@ The Credit Risk Modelling App predicts the probability of loan default using app
 It takes inputs such as:
 
 - Applicant income  
-- Loan amount  
+- Loan amount
+- past loan 
 - Loan type  
 - Credit history (DPD, delinquency ratio)  
 - Open loan accounts  
