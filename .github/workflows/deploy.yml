@@ -51,6 +51,15 @@ jobs:
     runs-on: [self-hosted, linux, x64]
 
     steps:
+      - name: Check Docker disk usage
+        run: |
+          sudo docker system df
+
+      - name: Free Docker space
+        run: |
+          sudo docker system prune -af --volumes
+          sudo docker system df
+
       - name: Login to Amazon ECR
         run: |
           aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 325503637305.dkr.ecr.us-east-1.amazonaws.com
